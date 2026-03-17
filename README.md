@@ -48,3 +48,6 @@
 
 <table><thead><tr><th width="166.79998779296875">模块名称</th><th>主要功能</th></tr></thead><tbody><tr><td>watch</td><td>监听文件系统事件，将事件加入队列</td></tr><tr><td>http_server</td><td>监听外部推送的事件并加入队列</td></tr><tr><td>config</td><td>定义和解析配置信息（包括全局和copy配置）</td></tr><tr><td>monitor</td><td>对整体的运行状况进行监控，对接监控数据到prometheus</td></tr><tr><td>retry</td><td>提供失败文件的重试机制</td></tr><tr><td>copy</td><td>提供不同的源和目的路径之间的文件复制功能</td></tr><tr><td>verify</td><td>提供文件拷贝的校验</td></tr></tbody></table>
 
+## DDICOPY
+
+DDICOPY是我们使用python对上面整个流程的实现，为了区别与原有的脚本方式，我们将这套实现命名为“DDICOPY”
