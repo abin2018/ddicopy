@@ -27,13 +27,17 @@ http_server:
   listen_port: 9601
 ```
 
-* general
+*   general
 
-&#x20;      一些全局通用的设置：
+    &#x20; 用于定义一些全局的通用配置
 
-&#x20;       1\. instance\_name: 必需定义，实例名称，DDICOPY可以运行多个实例(进程)，用于区分不同实例，<mark style="color:$warning;">同一台主机上的不同实例必需使用</mark><mark style="color:$warning;">**不同**</mark><mark style="color:$warning;">的instance\_name。</mark>
+    * instance\_name:&#x20;
 
-&#x20;       2\. log\_dir: 日志目录，DDICOPY支持为不同的[日志类型](ri-zhi.md)指定不同的目录，但为了统一方便管理，建议配置log\_dir的值，所有日志会统一放到这个目录下。另外log\_dir非必需，如果没有设置，会在"基目录"自动创建一个名为"logs"的目录，Linux系统会在运行用户的家目录的"\~/.ddiccopy/${instance\_name}/logs"，Windows系统在代码所在目录的上级"../.ddiccopy/${instance\_name}/logs"。
+    &#x20;     实例名称，**必填**，DDICOPY可以运行多个实例(进程)，用于区分不同实例，<mark style="color:$warning;">同一台主机上的不同实例必需使用</mark><mark style="color:$warning;">**不同**</mark><mark style="color:$warning;">的instance\_name。</mark>
+
+    * log\_dir:&#x20;
+
+&#x20;           日志目录，DDICOPY支持为不同的[日志类型](ri-zhi.md#ri-zhi-lei-xing)指定不同的目录，但为了统一方便管理，建议配置log\_dir的值，所有日志会统一放到这个目录下。另外log\_dir非必需，如果没有设置，会在"[基目录](ri-zhi.md#ji-mu-lu)"自动创建一个名为"logs"的目录。
 
 * watch
 
