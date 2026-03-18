@@ -5,8 +5,10 @@
 ## 安装和配置
 
 * [安装](an-zhuang-he-pei-zhi/an-zhuang.md)
+* [配置文件](an-zhuang-he-pei-zhi/pei-zhi-wen-jian.md)
 * [配置实例](an-zhuang-he-pei-zhi/pei-zhi-shi-li.md)
 * [命令行参数](an-zhuang-he-pei-zhi/ming-ling-xing-can-shu.md)
+* [日志](an-zhuang-he-pei-zhi/ri-zhi.md)
 * [构建](an-zhuang-he-pei-zhi/gou-jian.md)
 
 ## 模块
