@@ -1,6 +1,6 @@
 # 配置文件
 
-程序程序程序程序    DDICOPY的配置文件支持yaml或json格式，主要分为2类：全局配置文件和拷贝配置文件，其中全局配置文件用来定义各个模块的相关配置，拷贝配置文件用来定义文件拷贝的相关规则信息（如源地址、目的地址、路径匹配信息等），二者是引用关系，全局配置文件需要在其拷贝模块的配置中引用拷贝配置文件的路径。
+DDICOPY的配置文件支持yaml或json格式，主要分为2类：全局配置文件和拷贝配置文件，其中全局配置文件用来定义各个模块的相关配置，拷贝配置文件用来定义文件拷贝的相关规则信息（如源地址、目的地址、路径匹配信息等），二者是引用关系，全局配置文件需要在其拷贝模块的配置中引用拷贝配置文件的路径。
 
 1. 全局配置文件
 
@@ -31,12 +31,15 @@ http_server:
 
 &#x20;      一些全局通用的设置：
 
-&#x20;       1\. instance\_name: 必需定义，实例名称，DDICOPY可以运行多个实例(进程)，用于区分不同实例，同一台主机上的不同实例必需使用**不同**的instance\_name。
+&#x20;       1\. instance\_name: 必需定义，实例名称，DDICOPY可以运行多个实例(进程)，用于区分不同实例，<mark style="color:$warning;">同一台主机上的不同实例必需使用</mark><mark style="color:$warning;">**不同**</mark><mark style="color:$warning;">的instance\_name。</mark>
 
-&#x20;       2\. log\_dir: 日志目录，DDICOPY支持为不同的[日志类型](ri-zhi.md)指定不同的目录，但为了统一方便管理，建议配置log\_dir的值，所有日志会统一放到这个目录下。另外log\_dir非必需，如果没有设置，会在"基目录"自动创建一个名为"logs"的目录，Linux系统会在家目录的"\~/.ddiccopy/${instance\_name}/logs"，Windows系统会在代码所在目录的上级"../.ddiccopy/${instance\_name}/logs"
-
-
+&#x20;       2\. log\_dir: 日志目录，DDICOPY支持为不同的[日志类型](ri-zhi.md)指定不同的目录，但为了统一方便管理，建议配置log\_dir的值，所有日志会统一放到这个目录下。另外log\_dir非必需，如果没有设置，会在"基目录"自动创建一个名为"logs"的目录，Linux系统会在运行用户的家目录的"\~/.ddiccopy/${instance\_name}/logs"，Windows系统在代码所在目录的上级"../.ddiccopy/${instance\_name}/logs"。
 
 * watch
+
+&#x20;     watchdog监听的相关配置，注意此部分不是必需的，但watch和http\_server二者必需设置其一
+
+&#x20;      1.watch\_dir:&#x20;
+
 * copy
 * http\_server
