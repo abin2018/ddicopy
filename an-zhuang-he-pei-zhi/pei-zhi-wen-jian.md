@@ -63,7 +63,7 @@ http_server:
 
 #### SFTP
 
-<table><thead><tr><th width="207.79998779296875">配置项</th><th width="80.20001220703125">类型</th><th width="114.59991455078125">是否必填</th><th width="127.5999755859375">默认值</th><th>说明</th></tr></thead><tbody><tr><td>watch_dirs</td><td>str</td><td>是</td><td>无</td><td>watchdog监听的目录，可以指定多个，⚠️运行前会检查目录是否存在，不存在会报错。</td></tr><tr><td>watch_include_pattern</td><td>str</td><td>否</td><td>无</td><td>正则表达式模式，watchdog监听后，匹配这个模式的加入队列</td></tr><tr><td>watch_exclude_pattern</td><td>str</td><td>否</td><td>无</td><td>正则表达式模式，watchdog监听后，匹配这个模式不加入队列</td></tr></tbody></table>
+<table><thead><tr><th width="207.79998779296875">配置项</th><th width="80.20001220703125">类型</th><th width="104.19989013671875">是否必填</th><th width="88.39990234375">默认值</th><th>说明</th></tr></thead><tbody><tr><td>hostname</td><td>str</td><td>是</td><td>无</td><td>连接地址</td></tr><tr><td>port</td><td>int</td><td>是</td><td>无</td><td>端口号</td></tr><tr><td>username</td><td>str</td><td>是</td><td>无</td><td>用户名</td></tr><tr><td>password</td><td>str</td><td>否</td><td>无</td><td>密码，⚠️密码和密钥文件需指定一个</td></tr><tr><td>key_file</td><td>str</td><td>否</td><td>无</td><td>密钥文件路径，⚠️密码和密钥文件需指定一个</td></tr><tr><td>pass_pharse</td><td>str</td><td>否</td><td>无</td><td>密钥文件密码</td></tr><tr><td>user_proxy</td><td>bool</td><td>否</td><td>false</td><td>是否使用代理</td></tr><tr><td>proxy_url</td><td>str</td><td>否</td><td>无</td><td><p>代理地址：一般代理的格式，如 http://[username:password]@127.0.0.1:10808</p><p>⚠️当user_proxy为true时，必需指定<br>⚠️SFTP支持socks和http代理</p></td></tr></tbody></table>
 
 ### 源
 
