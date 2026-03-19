@@ -59,9 +59,9 @@ http_server:
 
 ### 连接信息
 
-&#x20;      除了本地地址以外，sftp、ftp、oss、s3都需要配置连接信息，以连接到对应的地址
+除了本地地址以外，sftp、ftp、oss、s3都需要配置连接信息，以连接到对应的地址
 
-&#x20;      1\. SFTP
+#### SFTP
 
 <table><thead><tr><th width="207.79998779296875">配置项</th><th width="80.20001220703125">类型</th><th width="114.59991455078125">是否必填</th><th width="127.5999755859375">默认值</th><th>说明</th></tr></thead><tbody><tr><td>watch_dirs</td><td>str</td><td>是</td><td>无</td><td>watchdog监听的目录，可以指定多个，⚠️运行前会检查目录是否存在，不存在会报错。</td></tr><tr><td>watch_include_pattern</td><td>str</td><td>否</td><td>无</td><td>正则表达式模式，watchdog监听后，匹配这个模式的加入队列</td></tr><tr><td>watch_exclude_pattern</td><td>str</td><td>否</td><td>无</td><td>正则表达式模式，watchdog监听后，匹配这个模式不加入队列</td></tr></tbody></table>
 
