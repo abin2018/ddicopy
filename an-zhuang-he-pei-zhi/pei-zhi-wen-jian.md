@@ -50,3 +50,16 @@ http_server:
 &#x20;     用于定义http\_server模块的相关配置，当使用watchdog时，可以不配置，但为了方便管理服务进程，建议配置，加入使用sftpgo的webhook发送文件信息，则必需配置。
 
 <table><thead><tr><th width="207.79998779296875">配置项</th><th width="114.59991455078125">是否必填</th><th width="127.5999755859375">默认值</th><th>说明</th></tr></thead><tbody><tr><td>listen_host</td><td>否</td><td>127.0.0.1</td><td>监听的IP，为保证安全，⚠️建议配置127.0.0.1。</td></tr><tr><td>listen_port</td><td>否</td><td>9696</td><td>监听的端口，⚠️注意，多个实例时端口不能冲突。</td></tr><tr><td>keep_file_attribute</td><td>否</td><td>true</td><td>是否保留文件的属性，文件复制后，是否修改文件的属性标记（Windows系统：去掉文件的归档属性；Linux系统：给文件增加sticky bit标志位）</td></tr><tr><td>http_include_pattern</td><td>否</td><td>无</td><td>正则表达式模式，http_server接收到文件信息后，匹配这个模式的加入队列</td></tr><tr><td>http_exclude_pattern</td><td>否</td><td>无</td><td>正则表达式模式，ttp_server接收到文件信息后，匹配这个模式不加入队列</td></tr></tbody></table>
+
+2. 拷贝配置文件
+
+* 概述
+
+&#x20;      我们将整个拷贝信息抽象成”源地址“和”目的地址“，地址信息又包含”地址类型“和”连接信息“，拷贝配置文件即包含多个拷贝信息的yml或json文件。
+
+* 源
+
+<table><thead><tr><th width="190.20001220703125">配置项</th><th width="102.20001220703125">是否必填</th><th width="95">默认值</th><th>说明</th></tr></thead><tbody><tr><td>source_type</td><td>否</td><td>local</td><td>源地址类型，支持local、sftp、oss、s3</td></tr><tr><td>source_path_match</td><td>是</td><td>无</td><td>源地址匹配，当传入的源地址与该配置以及源地址类型匹配时，才会执行复制，可以是一个路径，也可以包含通配符。如：/data/src匹配/data/src开头的文件，/data/*/online匹配/data/DDI/online和/data/FTP/online</td></tr><tr><td>source_split_length</td><td>是</td><td>无</td><td>对源路径拆分的索引，会将拆分后的部分与目标路径组合成新的路径。如：<br>源文件地址为 /data/FTP/online/a.csv，指定source_split_length为1，则会将源地址拆分成"/data"和"/FTP/online/a.csv"，假如目标地址为"/dest/“，那么最终的文件目标路径为"/dest/FTP/online/a.csv"<br>⚠️2种特殊情况<br>1. 如果设置的值大于按照文件路径分隔符分隔的最大长度，如上面路径source_split_length设置了大于5的值，则</td></tr></tbody></table>
+
+* 目标
+* 配置实例
