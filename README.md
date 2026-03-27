@@ -34,23 +34,11 @@
 1. 源端触发的机制，这是实现源端增量根本要素，由于各操作系统都支持文件系统事件(Linux系统的inotify、Windows系统的ReadDirectoryChangesW)，我们很自然的想到监听操作系统的文件事件（create、close等）实现触发。但由于文件系统事件在某些情况下受文件路径层级的影响（尤其是inotify），我们还需要更灵活的一种触发方式，比如我们可以使用HTTP接口服务的形式，这在使用SFTPGO等软件提供服务的时候借助回调非常有用。
 2. 不论目的端采用何种存储服务（本地硬盘、SFTP、FTP、S3等），从源端到目的端复制过程的本质其实都是文件流的复制，因此我们可以将“源端”和“目的端”抽象出来，不再关心到底是什么“介质”，而是将介质统一抽象成配置信息，不同的介质对应不同的配置信息，程序底层去实现不同介质之间的文件流复制。
 
-
-
-下图展示了整个设计中各模块的运行流程：
-
-<figure><img src=".gitbook/assets/02-复制流程.drawio.png" alt=""><figcaption></figcaption></figure>
-
-涉及模块的功能说明：
-
-<table><thead><tr><th width="166.79998779296875">模块名称</th><th>主要功能</th></tr></thead><tbody><tr><td>watch</td><td>监听文件系统事件，将事件加入队列</td></tr><tr><td>http_server</td><td>监听外部推送的事件并加入队列</td></tr><tr><td>config</td><td>定义和解析配置信息（包括全局和copy配置）</td></tr><tr><td>monitor</td><td>对整体的运行状况进行监控，对接监控数据到prometheus</td></tr><tr><td>retry</td><td>提供失败文件的重试机制</td></tr><tr><td>copy</td><td>提供不同的源和目的路径之间的文件复制功能</td></tr><tr><td>verify</td><td>提供文件拷贝的校验</td></tr></tbody></table>
-
 ## DDICOPY
 
-我们使用python语言实现上述了整个流程，为了区别与原有的脚本方式，我们将这套实现命名为“DDICOPY”。DDICOPY是一个面向运维与数据同步场景设计的**高可靠文件复制系统**，支持多种存储协议之间的数据传输，并提供监听、校验、重试、监控等完整能力。
+&#x20;   我们使用python语言实现上述抽象模型，为了区别与原有的脚本方式，我们将这套实现命名为"DDICOPY"。DDICOPY支持多种存储协议之间的数据传输，除了基本的文件复制功能之外，DDICOPY还提供监听、校验、重试、监控等完整能力。
 
-该系统不仅支持传统的“批量复制”，还支持基于文件事件的实时同步，适用于多种复杂场景，如数据分发、日志同步、跨存储迁移等。
-
-### 核心特点
+1. 核心特点
 
 * **多协议支持**：支持本地、SFTP、FTP、S3、OSS 等多种存储
 * **统一抽象层**：通过 Source 抽象实现不同存储的一致操作
@@ -60,14 +48,7 @@
 * **高性能并发执行**：基于线程池的并发复制能力
 * **可观测性支持**：集成 Prometheus 指标与日志系统
 
-### 适用场景
-
-* 文件同步（本地 ↔ 远程）
-* 数据分发（中心 → 多节点）
-* 日志收集与归档
-* 跨云存储迁移
-
-工作流程
+2. 工作流程
 
 ```mermaid
 flowchart TD
@@ -83,5 +64,9 @@ flowchart TD
     H -->|否| C
 ```
 
+3. 模块组成
 
+<figure><img src=".gitbook/assets/02-复制流程.drawio.png" alt=""><figcaption></figcaption></figure>
+
+<table><thead><tr><th width="166.79998779296875">模块名称</th><th>主要功能</th></tr></thead><tbody><tr><td>watch</td><td>监听文件系统事件，将事件加入队列</td></tr><tr><td>http_server</td><td>监听外部推送的事件并加入队列</td></tr><tr><td>config</td><td>定义和解析配置信息（包括全局和copy配置）</td></tr><tr><td>monitor</td><td>对整体的运行状况进行监控，对接监控数据到prometheus</td></tr><tr><td>retry</td><td>提供失败文件的重试机制</td></tr><tr><td>copy</td><td>提供不同的源和目的路径之间的文件复制功能</td></tr><tr><td>verify</td><td>提供文件拷贝的校验</td></tr></tbody></table>
 
